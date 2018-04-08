@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Inventory {
 
-    private List guitars;
+    private List<Guitar> guitars;
 
     public Inventory() {
-        guitars = new LinkedList();
+        guitars = new LinkedList<>();
     }
 
     public void addGuitar(String serialNumber, double price,
@@ -22,9 +22,9 @@ public class Inventory {
         guitars.add(guitar);
     }
 
-    public Guitar search(Guitar searchGuitar) {
-        for(Iterator i = guitars.iterator(); i.hasNext();) {
-            Guitar guitar = (Guitar) i.next();
+    public List<Guitar> search(Guitar searchGuitar) {
+        List<Guitar> matchedGuitars = new LinkedList<>();
+        for (Guitar guitar : guitars) {
             // Ignore serial number since that's unique
             // Ignore price since that's unique
 
@@ -42,9 +42,9 @@ public class Inventory {
 
             String topwood = searchGuitar.getTopwood();
             if ((topwood != null) && (!topwood.equals("")) && (!topwood.equals(guitar.getTopwood()))) continue;
-
-            return guitar;
+            matchedGuitars.add(guitar);
         }
-        return null;
+
+        return matchedGuitars;
     }
 }

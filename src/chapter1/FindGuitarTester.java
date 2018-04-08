@@ -1,5 +1,8 @@
 package chapter1;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class FindGuitarTester {
 
     public static void main (String[] args) {
@@ -10,14 +13,17 @@ public class FindGuitarTester {
         Guitar whatErinLikes = new Guitar("", 0, "fender", "stratocastor",
                 "electric", "Alder", "Alder");
 
-        Guitar guitar = inventory.search(whatErinLikes);
-        if(guitar != null) {
-            System.out.println("Erin, you might like this " +
-                    guitar.getBuilder() + " " + guitar.getModel() + " " +
-                    guitar.getType() + " guitar:\n " +
-                    guitar.getBackwood() + " back and sides,\n " +
-                    guitar.getTopwood() + " top.\nYou can have it for only $" +
-                    guitar.getPrice() + "!");
+        List<Guitar> matchedGuitars = inventory.search(whatErinLikes);
+        if(!matchedGuitars.isEmpty()) {
+            System.out.println("Erin, you might like these guitars:");
+            for(Guitar guitar : matchedGuitars) {
+                System.out.println("We have a " +
+                        guitar.getBuilder() + " " + guitar.getModel() + " " +
+                        guitar.getType() + " guitar:\n " +
+                        guitar.getBackwood() + " back and sides,\n " +
+                        guitar.getTopwood() + " top.\nYou can have it for only $" +
+                        guitar.getPrice() + "!");
+            }
         } else {
             System.out.println("Sorry, Erin, we have nothing for you.");
         }
@@ -27,6 +33,7 @@ public class FindGuitarTester {
         // Add guitars to inventory
 
         inventory.addGuitar("1", 122.0, "fender", "stratocastor", "electric", "Alder", "Alder");
+        inventory.addGuitar("2", 102.0, "fender", "stratocastor", "electric", "Alder", "Alder");
 
     }
 
