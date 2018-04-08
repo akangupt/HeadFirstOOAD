@@ -6,12 +6,11 @@ public class Guitar {
     private GuitarSpec guitarSpec;
 
     public Guitar(String serialNumber, double price,
-                  Builder builder, String model, Type type,
-                  Wood backwood, Wood topwood) {
+                  GuitarSpec guitarSpec) {
 
         this.serialNumber = serialNumber;
         this.price = price;
-        this.guitarSpec = new GuitarSpec(builder, model, type, backwood, topwood);
+        this.guitarSpec = guitarSpec;
     }
 
     public String getSerialNumber() {

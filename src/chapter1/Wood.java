@@ -3,7 +3,7 @@ package chapter1;
 public enum Wood {
 
     INDIAN_ROSEWOOD, BRAZILIAN_ROSEWOOD, MAHOGANY, MAPLE,
-    COCOBOLO, CEDAR, ADIRONADACK, ALDER, SITKA;
+    COCOBOLO, CEDAR, ADIRONDACK, ALDER, SITKA;
 
     @Override
     public String toString() {
@@ -20,7 +20,7 @@ public enum Wood {
                 return "cocobola";
             case CEDAR:
                 return "cedar";
-            case ADIRONADACK:
+            case ADIRONDACK:
                 return "adironadack";
             case ALDER:
                 return "alder";
