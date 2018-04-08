@@ -1,6 +1,5 @@
 package chapter1;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,26 +21,25 @@ public class Inventory {
         guitars.add(guitar);
     }
 
-    public List<Guitar> search(Guitar searchGuitar) {
+    public List<Guitar> search(GuitarSpec searchGuitar) {
         List<Guitar> matchedGuitars = new LinkedList<>();
         for (Guitar guitar : guitars) {
             // Ignore serial number since that's unique
             // Ignore price since that's unique
-
             Builder builder = searchGuitar.getBuilder();
-            if ((builder != null) && (!builder.equals("")) && (!builder.equals(guitar.getBuilder()))) continue;
+            if ((builder != null) && (!builder.equals(guitar.getGuitarSpec().getBuilder()))) continue;
 
             String model = searchGuitar.getModel().toLowerCase();
-            if ((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel().toLowerCase()))) continue;
+            if ((!model.isEmpty()) && (!model.equals(guitar.getGuitarSpec().getModel().toLowerCase()))) continue;
 
             Type type = searchGuitar.getType();
-            if ((type != null) && (!type.equals("")) && (!type.equals(guitar.getType()))) continue;
+            if ((type != null) && (!type.equals(guitar.getGuitarSpec().getType()))) continue;
 
             Wood backwood = searchGuitar.getBackwood();
-            if ((backwood != null) && (!backwood.equals("")) && (!backwood.equals(guitar.getBackwood()))) continue;
+            if ((backwood != null) && (!backwood.equals(guitar.getGuitarSpec().getBackwood()))) continue;
 
             Wood topwood = searchGuitar.getTopwood();
-            if ((topwood != null) && (!topwood.equals("")) && (!topwood.equals(guitar.getTopwood()))) continue;
+            if ((topwood != null) && (!topwood.equals(guitar.getGuitarSpec().getTopwood()))) continue;
             matchedGuitars.add(guitar);
         }
 

@@ -1,6 +1,5 @@
 package chapter1;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class FindGuitarTester {
@@ -10,7 +9,7 @@ public class FindGuitarTester {
         Inventory inventory = new Inventory();
         initializeInventory(inventory);
 
-        Guitar whatErinLikes = new Guitar("", 0, Builder.FENDER, "stratocastor",
+        GuitarSpec whatErinLikes = new GuitarSpec(Builder.FENDER, "stratocastor",
                 Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
 
         List<Guitar> matchedGuitars = inventory.search(whatErinLikes);
@@ -18,10 +17,10 @@ public class FindGuitarTester {
             System.out.println("Erin, you might like these guitars:");
             for(Guitar guitar : matchedGuitars) {
                 System.out.println("We have a " +
-                        guitar.getBuilder() + " " + guitar.getModel() + " " +
-                        guitar.getType() + " guitar:\n " +
-                        guitar.getBackwood() + " back and sides,\n " +
-                        guitar.getTopwood() + " top.\nYou can have it for only $" +
+                        guitar.getGuitarSpec().getBuilder() + " " + guitar.getGuitarSpec().getModel() + " " +
+                        guitar.getGuitarSpec().getType() + " guitar:\n " +
+                        guitar.getGuitarSpec().getBackwood() + " back and sides,\n " +
+                        guitar.getGuitarSpec().getTopwood() + " top.\nYou can have it for only $" +
                         guitar.getPrice() + "!");
             }
         } else {
