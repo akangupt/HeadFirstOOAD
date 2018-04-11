@@ -7,9 +7,9 @@ public class BarkRecognizer {
         this.door = door;
     }
 
-    public void recognize(String bark) {
-        System.out.println("BarkRecognizer recognized a " + bark);
-        if(door.getAllowedBark().equals(bark)) {
+    public void recognize(Bark bark) {
+        System.out.println("BarkRecognizer recognized a " + bark.getSound());
+        if(bark.equals(door.getBark())) {
             door.open();
         }
     }

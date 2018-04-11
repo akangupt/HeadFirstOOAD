@@ -6,7 +6,7 @@ import java.util.TimerTask;
 public class DogDoor {
 
     private boolean open;
-    private String allowedBark;
+    private Bark bark;
 
     public DogDoor() {
         this.open = false;
@@ -35,11 +35,11 @@ public class DogDoor {
         return open;
     }
 
-    public String getAllowedBark() {
-        return allowedBark;
+    public Bark getBark() {
+        return bark;
     }
 
-    public void setAllowedBark(String allowedBark) {
-        this.allowedBark = allowedBark;
+    public void setBark(Bark bark) {
+        this.bark = bark;
     }
 }
