@@ -1,52 +1,31 @@
 package chapter1;
 
-public abstract class InstrumentSpec {
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-    private String model;
-    private Builder builder;
-    private Wood backwood, topwood;
-    private Type type;
+public class InstrumentSpec {
 
-    public InstrumentSpec(Builder builder, String model, Type type,
-                          Wood backwood, Wood topwood) {
+    private Map properties;
 
-        this.builder = builder;
-        this.model = model;
-        this.type = type;
-        this.backwood = backwood;
-        this.topwood = topwood;
+    public InstrumentSpec(Map prop) {
+        this.properties = new HashMap();
+        this.properties.putAll(prop);
     }
 
     public boolean matches(InstrumentSpec otherSpec) {
-
-        if (builder != otherSpec.getBuilder()) return false;
-        if (!model.equals(otherSpec.getModel())) return false;
-        if (type != otherSpec.getType()) return false;
-        if (backwood != otherSpec.getBackwood()) return false;
-        if (topwood != otherSpec.getTopwood()) return false;
-
+        for (Iterator j = otherSpec.properties.keySet().iterator(); j.hasNext();) {
+            String propertyType = (String) j.next();
+            if(!(otherSpec.getProperty(propertyType) == getProperty(propertyType))) return false;
+        }
         return true;
     }
 
-
-    public Builder getBuilder() {
-        return builder;
+    public Map getProperties() {
+        return this.properties;
     }
 
-    public String getModel() {
-        return model;
+    public Object getProperty(String property) {
+        return properties.get(property);
     }
-
-    public Type getType() {
-        return type;
-    }
-
-    public Wood getBackwood() {
-        return backwood;
-    }
-
-    public Wood getTopwood() {
-        return topwood;
-    }
-
 }
