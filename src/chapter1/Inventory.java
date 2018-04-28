@@ -5,29 +5,45 @@ import java.util.List;
 
 public class Inventory {
 
-    private List<Guitar> guitars;
+    private List<Instrument> inventory; //not only guitars
 
     public Inventory() {
-        guitars = new LinkedList<>();
+        inventory = new LinkedList<>();
     }
 
-    public void addGuitar(String serialNumber, double price,
-                          GuitarSpec guitarSpec) {
+    public void addInstrument(String serialNumber, double price,
+                          InstrumentSpec instrumentSpec) {
 
-        Guitar guitar = new Guitar(serialNumber, price, guitarSpec);
-        guitars.add(guitar);
+        if(instrumentSpec instanceof GuitarSpec) {
+            inventory.add(new Guitar(serialNumber, price, (GuitarSpec) instrumentSpec));
+        }
+        else if(instrumentSpec instanceof MandolinSpec) {
+            inventory.add(new Mandolin(serialNumber, price, (MandolinSpec) instrumentSpec));
+        }
     }
 
     public List<Guitar> search(GuitarSpec searchGuitar) {
         List<Guitar> matchedGuitars = new LinkedList<>();
 
-        for (Guitar guitar : guitars) {
-            GuitarSpec guitarSpec = guitar.getGuitarSpec();
-            if(guitarSpec.matches(searchGuitar)) {
-                matchedGuitars.add(guitar);
+        for (Instrument instrument : inventory) {
+            if(instrument.getSpec().matches(searchGuitar)) {
+                matchedGuitars.add((Guitar) instrument);
             }
         }
 
         return matchedGuitars;
     }
+
+    public List<Mandolin> search(MandolinSpec searchMandolin) {
+        List<Mandolin> matchedMandolins = new LinkedList<>();
+
+        for (Instrument instrument : inventory) {
+            if(instrument.getSpec().matches(searchMandolin)) {
+                matchedMandolins.add((Mandolin) instrument);
+            }
+        }
+
+        return matchedMandolins;
+    }
+
 }
